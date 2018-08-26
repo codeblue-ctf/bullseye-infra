@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  dockerauth:
+    image: cesanta/docker_auth
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./config:/config:ro
+      - ./log:/logs
+      - ./config/certs:/certs
+    command: /config/registry_auth_config.yml
+    restart: always
+
+  registry:
+    restart: always
+    image: registry:2
+    ports:
+      - 5000:5000
+    environment:
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /var/lib/registry
+      REGISTRY_AUTH: token
+      REGISTRY_AUTH_TOKEN_REALM: https://localhost:5001/auth
+      REGISTRY_AUTH_TOKEN_SERVICE: "Docker registry"
+      REGISTRY_AUTH_TOKEN_ISSUER: "Auth Service"
+      REGISTRY_AUTH_TOKEN_ROOTCERTBUNDLE: /certs/server.crt
+    volumes:
+      - ./data:/var/lib/registry
+      - ./config/certs:/certs

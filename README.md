@@ -2,8 +2,8 @@
 
 ## Services
 
-- Bulls Eye Web (including admin CMS)
-- Bulls Eye Runner
+- [Bulls Eye Web](https://gitlab.com/CBCTF/bulls-eye-web) (including admin CMS)
+- [Bulls Eye Runner](https://gitlab.com/CBCTF/bulls-eye-runner)
 - Docker Registry
 
 ## Configuration

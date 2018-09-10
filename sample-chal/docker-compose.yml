@@ -3,8 +3,18 @@ version: '3'
 services:
   exploit:
     build: exploit
+    depends_on:
+      - challenge
+      - flag-submit
   challenge:
     build: challenge
+    volumes:
+      - "./flag:/flag"
+    expose:
+      - "8080"
   flag-submit:
     build: flag-submit
-    volumes: "./submitted-flag:/flag"
+    volumes:
+      - "./submitted-flag:/flag"
+    expose:
+      - "8080"

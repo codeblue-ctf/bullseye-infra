@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  exploit:
+    build: exploit
+  challenge:
+    build: challenge
+  flag-submit:
+    build: flag-submit
+    volumes: "./submitted-flag:/flag"

@@ -1,0 +1,3 @@
+[submodule "docker-registry"]
+	path = docker-registry
+	url = git@gitlab.com:CBCTF/bulls-eye-docker-registry.git

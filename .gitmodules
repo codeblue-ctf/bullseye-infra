@@ -1,3 +1,9 @@
 [submodule "docker-registry"]
 	path = docker-registry
 	url = git@gitlab.com:CBCTF/bulls-eye-docker-registry.git
+[submodule "web"]
+	path = web
+	url = git@gitlab.com:CBCTF/bulls-eye-web.git
+[submodule "runner"]
+	path = runner
+	url = git@gitlab.com:CBCTF/bulls-eye-runner.git

@@ -28,3 +28,15 @@ services:
     volumes:
       - ./docker-registry/data:/var/lib/registry
       - ./docker-registry/config/certs:/certs:ro
+
+  web:
+    build: ./web
+    ports:
+      - 3000:3000
+    environment:
+      BULLSEYE_RUNNER_HOST: 'runner:3001'
+      DOCKER_REGISTRY_HOST: 'registry:5000'
+      DOCKER_REGISTRY_AUTH_HOST: 'dockerauth:5001'
+
+  runner:
+    build: ./runner

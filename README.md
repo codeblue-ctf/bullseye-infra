@@ -10,6 +10,14 @@ Overview: <https://gitlab.com/CBCTF/bulls-eye/wikis/Overview>
 
 ## Deployment instructions
 
+```bash
+$ git submodule init
+$ git submodule update
+$ cp master.key web/config/master.key # copy bulls-eye-web master key
+$ ./docker-registry/generate-sample-config.sh
+$ docker-compose up
+```
+
 ### Bulls Eye Web
 
 See Bulls Eye Web instruction

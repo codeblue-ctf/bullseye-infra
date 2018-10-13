@@ -1,2 +1,4 @@
 roles:
   - web
+user: vagrant
+app_path: /vagrant/

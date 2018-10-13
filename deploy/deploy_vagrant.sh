@@ -1,5 +1,9 @@
 #!/bin/sh
 
-for node in web runner docker-registry; do
-    itamae ssh -h $node -y nodes/${node}.yml --vagrant entry.rb
-done
+if [ $# -ne 0 ]; then
+    for node in $@; do
+        itamae ssh -h $node -y nodes/${node}.yml --vagrant entry.rb
+    done
+else
+    $0 web runner docker-registry
+fi

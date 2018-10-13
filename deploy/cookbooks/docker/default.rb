@@ -17,8 +17,8 @@ execute "apt update" do
   command "apt update"
 end
 
-package "docker-ce"
+package "docker"
 
-service "docker-ce" do
+service "docker" do
   action [:start, :enable]
 end

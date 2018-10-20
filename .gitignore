@@ -1,1 +1,3 @@
 .vagrant
+vendor/bundle
+.bundle

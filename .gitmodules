@@ -1,9 +1,9 @@
 [submodule "docker-registry"]
-	path = docker-registry
+	path = deploy-with-docker-compose/docker-registry
 	url = git@gitlab.com:CBCTF/bulls-eye-docker-registry.git
 [submodule "web"]
-	path = web
+	path = deploy-with-docker-compose/web
 	url = git@gitlab.com:CBCTF/bulls-eye-web.git
 [submodule "runner"]
-	path = runner
+	path = deploy-with-docker-compose/runner
 	url = git@gitlab.com:CBCTF/bulls-eye-runner.git

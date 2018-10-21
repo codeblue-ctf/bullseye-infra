@@ -1,0 +1,4 @@
+roles:
+  - web
+user: ubuntu
+app_path: /user/local/bullseye-web

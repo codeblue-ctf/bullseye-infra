@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "web" do |atomic|
     atomic.vm.hostname = "bullseye-web"
     # atomic.vm.network "private_network", ip: "10.123.0.1", nic_type: "virtio"
+    atomic.vm.network "forwarded_port", guest: 80, host: 8000, host_ip: "127.0.0.1"
     atomic.vm.synced_folder "../../bullseye-web", "/vagrant"
     atomic.vm.provider "virtualbox" do |vb|
       vb.memory = "256"

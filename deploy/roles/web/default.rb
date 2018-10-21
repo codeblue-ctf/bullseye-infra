@@ -14,7 +14,6 @@ end
 
 %w(
   db:migrate
-  db:seed
   assets:precompile
 ).each do |task|
   execute "rails #{task}" do
@@ -24,8 +23,18 @@ end
   end
 end
 
-# execute "rails server" do
-#   user "#{node[:user]}"
-#   cwd "#{node[:app_path]}"
-#   command "bundle exec rails s"
-# end
+execute 'systemctl daemon-reload' do
+  action :nothing
+end
+
+template '/etc/systemd/system/bullseye-web.service' do
+  source 'templates/bullseye-web.service'
+  owner 'root'
+  group 'root'
+  mode  '0644'
+  notifies :run, 'execute[systemctl daemon-reload]', :immediately
+end
+
+service 'bullseye-web' do
+  action [:enable, :start]
+end

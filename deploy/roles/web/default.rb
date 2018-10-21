@@ -14,6 +14,7 @@ end
 
 %w(
   db:migrate
+  db:seed
   assets:precompile
 ).each do |task|
   execute "rails #{task}" do

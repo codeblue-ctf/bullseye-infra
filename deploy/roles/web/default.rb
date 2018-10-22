@@ -1,5 +1,8 @@
 include_recipe "../../cookbooks/ruby"
 include_recipe "../../cookbooks/redis"
+include_recipe "../../cookbooks/mysql_server"
+
+# setup bullseye web pplication
 
 %w(ruby-dev gcc g++ libsqlite3-dev).each do |pkg|
   package pkg
@@ -8,7 +11,7 @@ end
 execute "bundle install" do
   user "#{node[:user]}"
   cwd "#{node[:app_path]}"
-  command "bundle install --path=vendor/bundle"
+  command "RAILS_ENV=production bundle install --path=vendor/bundle"
 end
 
 %w(
@@ -19,7 +22,7 @@ end
   execute "rails #{task}" do
     user "#{node[:user]}"
     cwd "#{node[:app_path]}"
-    command "bundle exec rails #{task}"
+    command "RAILS_ENV=production bundle exec rails #{task}"
   end
 end
 

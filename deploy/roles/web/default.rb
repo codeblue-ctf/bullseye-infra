@@ -2,6 +2,22 @@ include_recipe "../../cookbooks/ruby"
 include_recipe "../../cookbooks/redis"
 include_recipe "../../cookbooks/mysql_server"
 
+# Add environment to file
+node[:env_file] = File.join(node[:app_path], '.env')
+template node[:env_file] do
+  source 'templates/environment'
+  owner  node[:user]
+  group  node[:user]
+  mode   '644'
+end
+
+# create database
+execute 'create database' do
+  user 'root'
+  command "mysql -u root -e \"create database #{Shellwords.escape(node[:mysql_server][:database])}\""
+  not_if "mysql -u root -e \"show databases\" | grep #{Shellwords.escape(node[:mysql_server][:database])}"
+end
+
 # setup bullseye web pplication
 
 %w(ruby-dev gcc g++ libsqlite3-dev).each do |pkg|
@@ -11,7 +27,7 @@ end
 execute "bundle install" do
   user "#{node[:user]}"
   cwd "#{node[:app_path]}"
-  command "RAILS_ENV=production bundle install --path=vendor/bundle"
+  command "bundle install --path=vendor/bundle"
 end
 
 %w(
@@ -22,7 +38,7 @@ end
   execute "rails #{task}" do
     user "#{node[:user]}"
     cwd "#{node[:app_path]}"
-    command "RAILS_ENV=production bundle exec rails #{task}"
+    command "bundle exec rails #{task}"
   end
 end
 

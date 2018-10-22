@@ -5,3 +5,4 @@ app_path: /vagrant/
 mysql_server:
   username: web
   password: db_password
+  database: bullseye_production

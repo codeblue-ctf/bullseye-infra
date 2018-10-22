@@ -1,0 +1,5 @@
+RAILS_ENV=production
+DB_HOST=localhost
+DB_USERNAME=<%= node[:mysql_server][:username] %>
+DB_PASSWORD=<%= node[:mysql_server][:password] %>
+DB_DATABASE=<%= node[:mysql_server][:database] %>

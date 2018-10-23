@@ -7,5 +7,5 @@ mysql_server:
   password: db_password
   database: bullseye_production
 admin:
-  username: admin
+  username: admin@localhost
   password: admin_password

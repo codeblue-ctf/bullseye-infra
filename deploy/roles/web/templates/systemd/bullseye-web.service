@@ -6,6 +6,7 @@ After=network.target
 Type=simple
 User=<%= node[:user] %>
 WorkingDirectory=<%= node[:app_path] %>
+Environment=RAILS_ENV=production
 ExecStart=/usr/local/bin/bundle exec puma
 Restart=always
 

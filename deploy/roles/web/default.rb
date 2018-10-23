@@ -18,16 +18,29 @@ execute 'create database' do
   not_if "mysql -u root -e \"show databases\" | grep #{Shellwords.escape(node[:mysql_server][:database])}"
 end
 
-# setup bullseye web pplication
+execute 'grant privileges' do
+  user 'root'
+  command "mysql -u root -e \"grant all privileges on #{Shellwords.escape(node[:mysql_server][:database])}.* to #{node[:mysql_server][:username]}@localhost \""
+  not_if "mysql -u root -e \"show grants for #{node[:mysql_server][:username]}@localhost\" | grep #{Shellwords.escape(node[:mysql_server][:database])}"
+end
 
-%w(ruby-dev gcc g++ libsqlite3-dev).each do |pkg|
+
+# setup bullseye web pplication
+%w(ruby-dev gcc g++ libsqlite3-dev libmysqlclient-dev).each do |pkg|
   package pkg
 end
 
 execute "bundle install" do
   user "#{node[:user]}"
   cwd "#{node[:app_path]}"
-  command "bundle install --path=vendor/bundle"
+  command "RAILS_ENV=production bundle install --path=vendor/bundle"
+end
+
+template "#{node[:app_path]}/db/seeds/production.rb" do
+  source 'templates/seeds/production.rb'
+  owner  node[:user]
+  group  node[:user]
+  mode   '644'
 end
 
 %w(
@@ -38,7 +51,7 @@ end
   execute "rails #{task}" do
     user "#{node[:user]}"
     cwd "#{node[:app_path]}"
-    command "bundle exec rails #{task}"
+    command "RAILS_ENV=production bundle exec rails #{task}"
   end
 end
 

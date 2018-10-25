@@ -102,20 +102,3 @@ template '/etc/nginx/sites-enabled/bullseye-web' do
   mode   '644'
   notifies :reload, 'service[nginx]'
 end
-# start nginx
-
-package 'nginx'
-service 'nginx' do
-  action [:enable, :start]
-end
-file "/etc/nginx/sites-enabled/default" do
-  action :delete
-  notifies :reload, 'service[nginx]'
-end
-template '/etc/nginx/sites-enabled/bullseye-web' do
-  source 'templates/nginx/bullseye-web'
-  owner  'root'
-  group  'root'
-  mode   '644'
-  notifies :reload, 'service[nginx]'
-end

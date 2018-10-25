@@ -1,0 +1,14 @@
+[Unit]
+Description=Bullseye Web Worker
+After=network.target
+
+[Service]
+Type=simple
+User=<%= node[:user] %>
+WorkingDirectory=<%= node[:app_path] %>
+Environment=RAILS_ENV=production
+ExecStart=/usr/local/bin/bundle exec sidekiq
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

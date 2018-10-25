@@ -72,6 +72,36 @@ service 'bullseye-web' do
   action [:enable, :start]
 end
 
+# register bullseye web worker service
+template '/etc/systemd/system/bullseye-web-worker.service' do
+  source 'templates/systemd/bullseye-web-worker.service'
+  owner 'root'
+  group 'root'
+  mode  '0644'
+  notifies :run, 'execute[systemctl daemon-reload]', :immediately
+end
+
+service 'bullseye-web-worker' do
+  action [:enable, :start]
+end
+
+# start nginx
+
+package 'nginx'
+service 'nginx' do
+  action [:enable, :start]
+end
+file "/etc/nginx/sites-enabled/default" do
+  action :delete
+  notifies :reload, 'service[nginx]'
+end
+template '/etc/nginx/sites-enabled/bullseye-web' do
+  source 'templates/nginx/bullseye-web'
+  owner  'root'
+  group  'root'
+  mode   '644'
+  notifies :reload, 'service[nginx]'
+end
 # start nginx
 
 package 'nginx'

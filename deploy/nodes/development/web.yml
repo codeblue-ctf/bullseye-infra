@@ -1,5 +1,6 @@
 roles:
   - web
+is_vagrant: true
 user: vagrant
 app_path: /vagrant/
 mysql_server:

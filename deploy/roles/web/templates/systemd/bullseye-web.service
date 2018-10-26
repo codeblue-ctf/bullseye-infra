@@ -11,4 +11,8 @@ ExecStart=/usr/local/bin/bundle exec puma
 Restart=always
 
 [Install]
+<% if node[:is_vagrant] then %>
+WantedBy=multi-user.target vagrant.mount
+<% else %>
 WantedBy=multi-user.target
+<% end %>

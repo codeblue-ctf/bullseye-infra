@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "web" do |atomic|
     atomic.vm.hostname = "bullseye-web"
-    atomic.vm.network "private_network", ip: "10.123.0.1", nic_type: "virtio"
+    atomic.vm.network "private_network", ip: "10.123.0.10", virtualbox__intnet: "intnet"
     atomic.vm.network "forwarded_port", guest: 80, host: 8000, host_ip: "127.0.0.1"
     atomic.vm.synced_folder "../../bullseye-web", "/vagrant"
     atomic.vm.provider "virtualbox" do |vb|
@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "runner" do |atomic|
     atomic.vm.hostname = "bullseye-runner"
-    atomic.vm.network "private_network", ip: "10.123.0.2", nic_type: "virtio"
+    atomic.vm.network "private_network", ip: "10.123.0.11", virtualbox__intnet: "intnet"
     atomic.vm.synced_folder "../../bullseye-runner", "/vagrant"
     atomic.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "docker-registry" do |atomic|
     atomic.vm.hostname = "bullseye-docker-registry"
-    atomic.vm.network "private_network", ip: "10.123.0.3", nic_type: "virtio"
+    atomic.vm.network "private_network", ip: "10.123.0.12", virtualbox__intnet: "intnet"
     atomic.vm.synced_folder "../../bullseye-docker-registry", "/vagrant"
     atomic.vm.provider "virtualbox" do |vb|
       vb.memory = "256"

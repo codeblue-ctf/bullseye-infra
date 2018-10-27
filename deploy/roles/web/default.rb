@@ -4,7 +4,6 @@ include_recipe "../../cookbooks/redis"
 include_recipe "../../cookbooks/mysql_server"
 
 # Clone bullseye web
-
 git node[:app_path] do
   repository 'git@gitlab.com:CBCTF/bullseye-web.git'
   user node[:user]
@@ -32,8 +31,14 @@ execute 'grant privileges' do
   not_if "mysql -u root -e \"show grants for #{node[:mysql_server][:username]}@localhost\" | grep #{Shellwords.escape(node[:mysql_server][:database])}"
 end
 
+# Setup bullseye web pplication
+file "#{node[:app_path]}/config/master.key" do
+  owner node[:user]
+  group node[:user]
+  mode '0600'
+  content node[:secrets][:web_master_key]
+end
 
-# setup bullseye web pplication
 %w(ruby-dev gcc g++ libsqlite3-dev libmysqlclient-dev libxml2-dev).each do |pkg|
   package pkg
 end

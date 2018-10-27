@@ -5,7 +5,7 @@ node.reverse_merge!(
     password: node[:secrets][:web_db_password]
   },
   admin: {
-    username: 'admin@codeblue.jp',
+    username: 'admin',
     password: node[:secrets][:web_admin_password]
   }
 )

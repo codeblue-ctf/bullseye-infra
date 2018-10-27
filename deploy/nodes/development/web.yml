@@ -11,6 +11,15 @@ admin:
   username: admin@localhost
   password: admin_password
 hosts:
-  bullseye_runner: 10.123.0.2
-  docker_registry: 10.123.0.3:5000
-  docker_registry_auth: 10.123.0.3:5001
+  web:
+    ip_addr: 10.123.0.2
+    internal_ip_addr: 10.123.0.2
+    service: 10.123.0.2:80
+  docker_registry:
+    ip_addr: 10.123.0.3
+    internal_ip_addr: 10.123.0.3
+    registry_service: 10.123.0.3:5000
+    registry_auth_service: 10.123.0.3:5001
+  runner:
+    ip_addr: 10.123.0.4
+    service: 10.123.0.4:80

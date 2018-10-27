@@ -1,3 +1,12 @@
+require 'yaml'
+
+module RecipeHelper
+  def data_bag(name)
+    Hashie::Mash.load(File.join(__dir__, 'data_bags', "#{name}.yml"))
+  end
+end
+Itamae::Recipe::EvalContext.send(:include, RecipeHelper)
+
 # TODO: load secret data by itamae secrets
 
 execute "apt-get update" do
@@ -7,6 +16,8 @@ end
 execute "systemctl daemon-reload" do
   action :nothing
 end
+
+node['hosts'] = node['hosts'] || data_bag('hosts')
 
 node['roles'] = node['roles'] || []
 node['roles'].each do |role|

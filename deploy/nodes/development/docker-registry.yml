@@ -2,6 +2,3 @@ roles:
   - docker-registry
 user: vagrant
 app_path: /vagrant
-docker:
-  users:
-    - vagrant

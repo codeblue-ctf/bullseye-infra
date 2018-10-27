@@ -1,2 +1,4 @@
 roles:
   - docker-registry
+user: ubuntu
+app_path: /home/ubuntu/bullseye-docker-registry

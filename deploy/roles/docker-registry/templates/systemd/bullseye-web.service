@@ -1,0 +1,14 @@
+[Unit]
+Description=Bullseye Docker Registry
+After=network.target
+
+[Service]
+Type=simple
+User=<%= node[:user] %>
+WorkingDirectory=<%= node[:app_path] %>
+ExecStart=/usr/bin/docker-compose up
+ExecStop=/usr/bin/docker-compose stop
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

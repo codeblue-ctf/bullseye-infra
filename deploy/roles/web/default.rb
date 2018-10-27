@@ -16,9 +16,11 @@ include_recipe "../../cookbooks/redis"
 include_recipe "../../cookbooks/mysql_server"
 
 # Clone bullseye web
-git node[:app_path] do
-  repository 'git@gitlab.com:CBCTF/bullseye-web.git'
-  user node[:user]
+unless node[:is_vagrant] then
+  git node[:app_path] do
+    repository 'git@gitlab.com:CBCTF/bullseye-web.git'
+    user node[:user]
+  end
 end
 
 # Add environment to file

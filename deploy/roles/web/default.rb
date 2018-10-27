@@ -1,3 +1,15 @@
+node.reverse_merge!(
+  mysql_server: {
+    username: 'web',
+    database: 'bullseye_production',
+    password: node[:secrets][:web_db_password]
+  },
+  admin: {
+    username: 'admin@codeblue.jp',
+    password: node[:secrets][:web_admin_password]
+  }
+)
+
 include_recipe "../../cookbooks/deploy_key"
 include_recipe "../../cookbooks/ruby"
 include_recipe "../../cookbooks/redis"

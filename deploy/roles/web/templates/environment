@@ -3,6 +3,6 @@ DB_HOST=localhost
 DB_USERNAME=<%= node[:mysql_server][:username] %>
 DB_PASSWORD=<%= node[:mysql_server][:password] %>
 DB_DATABASE=<%= node[:mysql_server][:database] %>
-BULLSEYE_RUNNER_HOST=<%= node[:hosts][:bullseye_runner] %>
-DOCKER_REGISTRY_HOST=<%= node[:hosts][:docker_registry] %>
-DOCKER_REGISTRY_AUTH_HOST=<%= node[:hosts][:docker_registry_auth] %>
+BULLSEYE_RUNNER_HOST=<%= node[:hosts][:runner][:service] %>
+DOCKER_REGISTRY_HOST=<%= node[:hosts][:docker_registry][:registry_service] %>
+DOCKER_REGISTRY_AUTH_HOST=<%= node[:hosts][:docker_registry][:registry_auth_service] %>

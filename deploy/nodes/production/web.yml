@@ -1,7 +1,7 @@
 roles:
   - web
 user: ubuntu
-app_path: /user/local/bullseye-web
+app_path: /home/ubuntu/bullseye-web
 mysql_server:
   username: web
   password: db_password # TODO: use itamae secrets

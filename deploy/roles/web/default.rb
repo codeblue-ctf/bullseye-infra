@@ -11,6 +11,7 @@ node.reverse_merge!(
 )
 
 include_recipe "../../cookbooks/deploy_key"
+include_recipe "../../cookbooks/known_hosts"
 include_recipe "../../cookbooks/ruby"
 include_recipe "../../cookbooks/redis"
 include_recipe "../../cookbooks/mysql_server"

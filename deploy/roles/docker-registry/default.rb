@@ -1,9 +1,10 @@
 include_recipe "../../cookbooks/deploy_key"
+include_recipe "../../cookbooks/known_hosts"
 include_recipe "docker::install"
 include_recipe "../../cookbooks/docker-compose"
 
 # Clone bullseye docker registry
-# Need to add gitlab to known hosts
+# TODO: Need to add gitlab to known hosts
 unless node[:is_vagrant] then
   git node[:app_path] do
     repository 'git@gitlab.com:CBCTF/bullseye-docker-registry.git'

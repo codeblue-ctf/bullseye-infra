@@ -6,8 +6,8 @@ After=network.target
 Type=simple
 User=<%= node[:user] %>
 WorkingDirectory=<%= node[:app_path] %>
-ExecStart=/usr/bin/docker-compose up
-ExecStop=/usr/bin/docker-compose stop
+ExecStart=/usr/local/bin/docker-compose up
+ExecStop=/usr/local/bin/docker-compose stop
 Restart=always
 
 [Install]

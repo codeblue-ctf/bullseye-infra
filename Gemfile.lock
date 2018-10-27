@@ -9,6 +9,8 @@ GEM
       schash (~> 0.1.0)
       specinfra (>= 2.64.0, < 3.0.0)
       thor
+    itamae-plugin-recipe-docker (0.2.3)
+      itamae (>= 1.6)
     itamae-secrets (0.2.3)
       thor
     net-scp (1.2.1)
@@ -30,6 +32,7 @@ PLATFORMS
 
 DEPENDENCIES
   itamae
+  itamae-plugin-recipe-docker
   itamae-secrets
   rake
 

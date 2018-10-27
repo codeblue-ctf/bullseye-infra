@@ -1,0 +1,1 @@
+DOCKER_REGISTRY_AUTH_HOST=<%= node[:hosts][:docker_registry][:registry_auth_service] %>

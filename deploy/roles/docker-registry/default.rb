@@ -18,6 +18,15 @@ unless node[:is_vagrant] then
   end
 end
 
+# Add environment to file
+env_file = File.join(node[:app_path], '.env')
+template env_file do
+  source 'templates/environment'
+  owner  node[:user]
+  group  node[:user]
+  mode   '644'
+end
+
 # Place certificates
 # TODO: use real certificates
 file "#{node[:app_path]}/config/certs/server.key" do

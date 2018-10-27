@@ -34,7 +34,7 @@ end
 
 
 # setup bullseye web pplication
-%w(ruby-dev gcc g++ libsqlite3-dev libmysqlclient-dev).each do |pkg|
+%w(ruby-dev gcc g++ libsqlite3-dev libmysqlclient-dev libxml2-dev).each do |pkg|
   package pkg
 end
 

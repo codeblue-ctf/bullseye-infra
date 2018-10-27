@@ -10,6 +10,10 @@ Overview: <https://gitlab.com/CBCTF/bulls-eye/wikis/Overview>
 
 ## Deployment instructions
 
+### Get secret key
+
+Set secret key to `deploy/secrets/keys/default`
+
 ### For development
 
 ```bash

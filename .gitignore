@@ -1,3 +1,4 @@
 .vagrant
 vendor/bundle
 .bundle
+deploy/secrets/keys/

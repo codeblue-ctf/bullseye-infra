@@ -6,4 +6,4 @@ DB_DATABASE=<%= node[:mysql_server][:database] %>
 BULLSEYE_RUNNER_HOST=<%= node[:hosts][:runner][:service] %>
 DOCKER_REGISTRY_HOST=<%= node[:hosts][:docker_registry][:registry_service] %>
 DOCKER_REGISTRY_AUTH_HOST=<%= node[:hosts][:docker_registry][:registry_auth_service] %>
-BULLSEYE_API_AUTH_TOKEN=<% node[:secrets][:api_auth_token] %>
+BULLSEYE_API_AUTH_TOKEN=<%= node[:secrets][:api_auth_token] %>

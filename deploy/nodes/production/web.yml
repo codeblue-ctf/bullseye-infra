@@ -2,3 +2,10 @@ roles:
   - web
 user: ubuntu
 app_path: /user/local/bullseye-web
+mysql_server:
+  username: web
+  password: db_password # TODO: use itamae secrets
+  database: bullseye_production
+admin:
+  username: admin@localhost # TODO: use itamae secrets
+  password: admin_password # TODO: use itamae secrets

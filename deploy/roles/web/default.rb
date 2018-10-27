@@ -1,6 +1,14 @@
+include_recipe "../../cookbooks/deploy_key"
 include_recipe "../../cookbooks/ruby"
 include_recipe "../../cookbooks/redis"
 include_recipe "../../cookbooks/mysql_server"
+
+# Clone bullseye web
+
+git node[:app_path] do
+  repository 'git@gitlab.com:CBCTF/bullseye-web.git'
+  user node[:user]
+end
 
 # Add environment to file
 node[:env_file] = File.join(node[:app_path], '.env')
@@ -11,7 +19,7 @@ template node[:env_file] do
   mode   '644'
 end
 
-# create database
+# Create database
 execute 'create database' do
   user 'root'
   command "mysql -u root -e \"create database #{Shellwords.escape(node[:mysql_server][:database])}\""

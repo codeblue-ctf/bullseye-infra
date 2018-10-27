@@ -28,7 +28,7 @@ $ ./deploy_vagrant.sh
 TODO: create Rakefile to do the same thing
 
 ```bash
-$ bundle exec itamae ssh -h PRODUCTION_HOST -y nodes/production/$ROLE.yml deploy/entry.rb
+$ bundle exec itamae ssh -h PRODUCTION_HOST -y deploy/nodes/production/$ROLE.yml deploy/entry.rb
 ```
 
 ### Bulls Eye Web

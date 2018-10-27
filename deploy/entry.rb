@@ -1,3 +1,4 @@
+require 'itamae/secrets'
 require 'yaml'
 
 module RecipeHelper
@@ -18,6 +19,7 @@ execute "systemctl daemon-reload" do
 end
 
 node['hosts'] = node['hosts'] || data_bag('hosts')
+node['secrets'] = Itamae::Secrets(File.join(__dir__, 'secrets'))
 
 node['roles'] = node['roles'] || []
 node['roles'].each do |role|

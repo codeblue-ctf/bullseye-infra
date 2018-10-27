@@ -56,10 +56,6 @@ end
 end
 
 # register bullseye web service
-execute 'systemctl daemon-reload' do
-  action :nothing
-end
-
 template '/etc/systemd/system/bullseye-web.service' do
   source 'templates/systemd/bullseye-web.service'
   owner 'root'

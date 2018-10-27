@@ -10,12 +10,21 @@ Overview: <https://gitlab.com/CBCTF/bulls-eye/wikis/Overview>
 
 ## Deployment instructions
 
+### For development
+
 ```bash
-$ git submodule init
-$ git submodule update
-$ cp master.key web/config/master.key # copy bulls-eye-web master key
-$ ./docker-registry/generate-sample-config.sh
-$ docker-compose up
+$ bundle install --path=vendor/bundle
+$ cd deploy
+$ vagrant up
+$ ./deploy_vagrant.sh
+```
+
+### For production
+
+TODO: create Rakefile to do the same thing
+
+```bash
+$ bundle exec itamae ssh -h PRODUCTION_HOST -y nodes/production/$ROLE.yml deploy/entry.rb
 ```
 
 ### Bulls Eye Web

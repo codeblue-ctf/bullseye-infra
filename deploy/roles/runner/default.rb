@@ -10,6 +10,14 @@ include_recipe "docker::install"
 include_recipe "../../cookbooks/docker-compose"
 include_recipe "../../cookbooks/nodejs"
 
+# Clone bullseye runner
+unless node[:is_vagrant] then
+  git node[:app_path] do
+    repository 'git@gitlab.com:CBCTF/bullseye-runner.git'
+    user node[:user]
+  end
+end
+
 execute "npm install" do
   user node[:user]
   cwd node[:app_path]

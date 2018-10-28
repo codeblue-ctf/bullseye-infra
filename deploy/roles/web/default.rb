@@ -83,7 +83,7 @@ end
   end
 end
 
-# register bullseye web service
+# Register bullseye web service
 template '/etc/systemd/system/bullseye-web.service' do
   source 'templates/systemd/bullseye-web.service'
   owner 'root'
@@ -96,7 +96,7 @@ service 'bullseye-web' do
   action [:enable, :start]
 end
 
-# register bullseye web worker service
+# Register bullseye web worker service
 template '/etc/systemd/system/bullseye-web-worker.service' do
   source 'templates/systemd/bullseye-web-worker.service'
   owner 'root'
@@ -109,8 +109,7 @@ service 'bullseye-web-worker' do
   action [:enable, :start]
 end
 
-# start nginx
-
+# Start nginx
 package 'nginx'
 service 'nginx' do
   action [:enable, :start]

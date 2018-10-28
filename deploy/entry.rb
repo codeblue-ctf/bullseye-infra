@@ -8,8 +8,6 @@ module RecipeHelper
 end
 Itamae::Recipe::EvalContext.send(:include, RecipeHelper)
 
-# TODO: load secret data by itamae secrets
-
 execute "apt-get update" do
   action :nothing
 end

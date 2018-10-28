@@ -10,7 +10,6 @@ include_recipe "docker::install"
 include_recipe "../../cookbooks/docker-compose"
 
 # Clone bullseye docker registry
-# TODO: Need to add gitlab to known hosts
 unless node[:is_vagrant] then
   git node[:app_path] do
     repository 'git@gitlab.com:CBCTF/bullseye-docker-registry.git'
@@ -28,7 +27,6 @@ template env_file do
 end
 
 # Place certificates
-# TODO: use real certificates
 file "#{node[:app_path]}/config/certs/server.key" do
   owner node[:user]
   group node[:user]

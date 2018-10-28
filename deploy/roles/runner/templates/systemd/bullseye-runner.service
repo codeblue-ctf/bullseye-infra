@@ -1,0 +1,17 @@
+[Unit]
+Description=Bullseye Runner
+After=network.target
+
+[Service]
+Type=simple
+User=<%= node[:user] %>
+WorkingDirectory=<%= node[:app_path] %>
+ExecStart=/usr/bin/npm start
+Restart=always
+
+[Install]
+<% if node[:is_vagrant] then %>
+WantedBy=multi-user.target vagrant.mount
+<% else %>
+WantedBy=multi-user.target
+<% end %>

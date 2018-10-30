@@ -4,6 +4,10 @@ server {
   access_log /var/log/nginx/access.log;
   error_log /var/log/nginx/error.log;
 
+  location = /favicon.ico {
+    access_log off;
+    root <%= node[:app_path] %>/public;
+  }
   location ~ ^/assets/ {
     root <%= node[:app_path] %>/public;
   }

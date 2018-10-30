@@ -7,3 +7,5 @@ BULLSEYE_RUNNER_HOST=<%= node[:hosts][:runner][:service] %>
 DOCKER_REGISTRY_HOST=<%= node[:hosts][:docker_registry][:registry_service] %>
 DOCKER_REGISTRY_AUTH_HOST=<%= node[:hosts][:docker_registry][:registry_auth_service] %>
 BULLSEYE_API_AUTH_TOKEN=<%= node[:secrets][:api_auth_token] %>
+BULLSEYE_ADMIN_NAME=<%= node[:admin][:password] %>
+BULLSEYE_ADMIN_PASSWORD=<%= node[:admin][:username] %>

@@ -2,3 +2,17 @@ roles:
   - docker-registry
 user: vagrant
 app_path: /vagrant
+hosts:
+  web:
+    ip_addr: 10.123.0.10
+    internal_ip_addr: 10.123.0.10
+    service: 10.123.0.10:80
+    service_url: http://10.123.0.10:80
+  docker_registry:
+    ip_addr: 10.123.0.12
+    internal_ip_addr: 10.123.0.12
+    registry_service: 10.123.0.12:5000
+    registry_auth_service: 10.123.0.12:5001
+  runner:
+    ip_addr: 10.123.0.11
+    service: 10.123.0.11:80

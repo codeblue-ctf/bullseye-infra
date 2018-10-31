@@ -16,20 +16,6 @@ include_recipe "../../cookbooks/ruby"
 include_recipe "../../cookbooks/redis"
 include_recipe "../../cookbooks/mysql_server"
 
-# Place certificates
-file "/etc/nginx/server.key" do
-  owner node[:user]
-  group node[:user]
-  mode '0600'
-  content node[:secrets][:docker_registry_server_key] # XXX: using same secret key with docker registry
-end
-file "/etc/nginx/server.crt" do
-  owner node[:user]
-  group node[:user]
-  mode '0644'
-  content node[:secrets][:docker_registry_server_crt] # XXX: using same secret key with docker registry
-end
-
 # Clone bullseye web
 unless node[:is_vagrant] then
   git node[:app_path] do
@@ -128,6 +114,21 @@ package 'nginx'
 service 'nginx' do
   action [:enable, :start]
 end
+
+# Place certificates
+file "/etc/nginx/server.key" do
+  owner node[:user]
+  group node[:user]
+  mode '0600'
+  content node[:secrets][:docker_registry_server_key] # XXX: using same secret key with docker registry
+end
+file "/etc/nginx/server.crt" do
+  owner node[:user]
+  group node[:user]
+  mode '0644'
+  content node[:secrets][:docker_registry_server_crt] # XXX: using same secret key with docker registry
+end
+
 file "/etc/nginx/sites-enabled/default" do
   action :delete
   notifies :reload, 'service[nginx]'

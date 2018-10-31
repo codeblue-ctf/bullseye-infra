@@ -10,3 +10,4 @@ BULLSEYE_API_AUTH_TOKEN=<%= node[:secrets][:api_auth_token] %>
 BULLSEYE_ADMIN_NAME=<%= node[:admin][:username] %>
 BULLSEYE_ADMIN_PASSWORD=<%= node[:admin][:password] %>
 RAILS_SERVE_STATIC_FILES=true
+BULLSEYE_WEB_HOST=<%= node[:hosts][:web][:internal_service_url] %>

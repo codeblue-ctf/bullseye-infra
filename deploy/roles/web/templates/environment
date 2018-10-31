@@ -9,3 +9,4 @@ DOCKER_REGISTRY_AUTH_HOST=<%= node[:hosts][:docker_registry][:registry_auth_serv
 BULLSEYE_API_AUTH_TOKEN=<%= node[:secrets][:api_auth_token] %>
 BULLSEYE_ADMIN_NAME=<%= node[:admin][:username] %>
 BULLSEYE_ADMIN_PASSWORD=<%= node[:admin][:password] %>
+RAILS_SERVE_STATIC_FILES=true

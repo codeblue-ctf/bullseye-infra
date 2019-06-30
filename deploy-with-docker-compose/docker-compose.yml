@@ -5,6 +5,9 @@ services:
     image: cesanta/docker_auth
     ports:
       - "5001:5001"
+    environment:
+      BULLSEYE_WEB_URL: http://web:3000
+      BULLSEYE_API_AUTH_TOKEN: BULLSEYE_AUTH_TOKEN
     volumes:
       - ./docker-registry/config:/config:ro
       - ./docker-registry/log:/logs
@@ -17,17 +20,13 @@ services:
     ports:
       - 5000:5000
     environment:
-      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/server.crt
-      REGISTRY_HTTP_TLS_KEY: /certs/server.key
-      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /var/lib/registry
-      REGISTRY_AUTH: token
       REGISTRY_AUTH_TOKEN_REALM: https://localhost:5001/auth
-      REGISTRY_AUTH_TOKEN_SERVICE: "Docker registry"
       REGISTRY_AUTH_TOKEN_ISSUER: "Auth Service"
-      REGISTRY_AUTH_TOKEN_ROOTCERTBUNDLE: /certs/server.crt
+      REGISTRY_NOTIFICATIONS_ENDPOINTS: "- name: bullseye-web\n  url: http://localhost:3003/internal_api/v1/registry_event"
     volumes:
       - ./docker-registry/data:/var/lib/registry
       - ./docker-registry/config/certs:/certs:ro
+      - ./docker-registry/config/registry_config.yml:/etc/docker/registry/config.yml:ro
 
   web:
     build: ./web
@@ -35,6 +34,7 @@ services:
       - 3000:3000
     environment:
       BULLSEYE_RUNNER_HOST: 'runner:3001'
+      BULLSEYE_API_AUTH_TOKEN: 'BULLSEYE_AUTH_TOKEN'
       DOCKER_REGISTRY_HOST: 'registry:5000'
       DOCKER_REGISTRY_AUTH_HOST: 'dockerauth:5001'
 

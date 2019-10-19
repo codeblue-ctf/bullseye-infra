@@ -7,6 +7,11 @@ node.reverse_merge!(
   admin: {
     username: 'admin',
     password: node[:secrets][:web_admin_password]
+  },
+  rbenv: {
+    username: 'ubuntu',
+    home_dir: '/home/ubuntu',
+    ruby_version: '2.6.4'
   }
 )
 

@@ -11,7 +11,7 @@ node.reverse_merge!(
   rbenv: {
     username: 'ubuntu',
     home_dir: '/home/ubuntu',
-    ruby_version: '2.6.4'
+    ruby_version: '2.6.5'
   }
 )
 

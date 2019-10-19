@@ -13,7 +13,6 @@ node.reverse_merge!(
 include_recipe "../../cookbooks/deploy_key"
 include_recipe "../../cookbooks/known_hosts"
 include_recipe "../../cookbooks/ruby"
-include_recipe "../../cookbooks/redis"
 include_recipe "../../cookbooks/mysql_server"
 
 # Clone bullseye web
@@ -46,7 +45,7 @@ execute 'grant privileges' do
   not_if "mysql -u root -e \"show grants for #{node[:mysql_server][:username]}@localhost\" | grep #{Shellwords.escape(node[:mysql_server][:database])}"
 end
 
-# Setup bullseye web pplication
+# Setup bullseye web application
 file "#{node[:app_path]}/config/master.key" do
   owner node[:user]
   group node[:user]
@@ -96,7 +95,7 @@ service 'bullseye-web' do
   action [:enable, :start]
 end
 
-# Register bullseye web worker service
+# XXX: runner-masterから結果を定期的に取得するやつ
 template '/etc/systemd/system/bullseye-web-worker.service' do
   source 'templates/systemd/bullseye-web-worker.service'
   owner 'root'

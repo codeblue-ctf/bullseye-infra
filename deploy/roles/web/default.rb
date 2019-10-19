@@ -58,14 +58,25 @@ file "#{node[:app_path]}/config/master.key" do
   content node[:secrets][:web_master_key]
 end
 
-%w(ruby-dev gcc g++ libsqlite3-dev libmysqlclient-dev libxml2-dev).each do |pkg|
+# install yarn
+execute 'install yarn' do
+  user 'root'
+  command <<-"EOS"
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    apt update
+  EOS
+  not_if 'which yarn'
+end
+
+%w(ruby-dev gcc g++ libsqlite3-dev libmysqlclient-dev libxml2-dev yarn).each do |pkg|
   package pkg
 end
 
 execute "bundle install" do
   user "#{node[:user]}"
   cwd "#{node[:app_path]}"
-  command "RAILS_ENV=production bundle install --path=vendor/bundle"
+  command "RAILS_ENV=production rbenv exec bundle install --path=vendor/bundle"
 end
 
 template "#{node[:app_path]}/db/seeds/production.rb" do
@@ -83,7 +94,7 @@ end
   execute "rails #{task}" do
     user "#{node[:user]}"
     cwd "#{node[:app_path]}"
-    command "RAILS_ENV=production bundle exec rails #{task}"
+    command "RAILS_ENV=production rbenv exec bundle exec rails #{task}"
   end
 end
 

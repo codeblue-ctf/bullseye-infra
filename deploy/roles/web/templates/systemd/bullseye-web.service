@@ -7,7 +7,7 @@ Type=simple
 User=<%= node[:user] %>
 WorkingDirectory=<%= node[:app_path] %>
 Environment=RAILS_ENV=production
-ExecStart=/usr/local/bin/bundle exec puma
+ExecStart=/home/ubuntu/.rbenv/shims/bundle exec puma
 Restart=always
 
 [Install]

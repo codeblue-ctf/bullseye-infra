@@ -29,10 +29,10 @@ end
 execute 'install rbenv' do
   user username
   command <<-"EOS"
-    echo 'export PATH="$HOME/.rbenv/shims:$PATH"' >> ~/.bash_profile
-    echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+    echo 'export PATH="$HOME/.rbenv/shims:$PATH"' >> ~/.bashrc
+    echo 'eval "$(rbenv init -)"' >> ~/.bashrc
   EOS
-  not_if 'echo $PATH | grep rbenv'
+  not_if 'cat ~/.bashrc | grep -qi rbenv'
 end
 
 execute "install ruby #{ruby_version}" do

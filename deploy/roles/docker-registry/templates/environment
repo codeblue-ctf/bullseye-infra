@@ -1,3 +1,4 @@
 DOCKER_REGISTRY_AUTH_HOST=<%= node[:hosts][:docker_registry][:registry_auth_service] %>
 BULLSEYE_WEB_URL=<%= node[:hosts][:web][:service_url] %>
 BULLSEYE_API_AUTH_TOKEN=<%= node[:secrets][:api_auth_token] %>
+BULLSEYE_RUNNER_NOTIFICATION_URL=<%= node[:hosts][:runner][:notification_url] %>

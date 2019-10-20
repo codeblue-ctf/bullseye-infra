@@ -1,0 +1,17 @@
+roles:
+  - web
+user: ubuntu
+app_path: /home/ubuntu/bullseye-web
+hosts:
+  web:
+    ip_addr: 34.84.70.203
+    service: www-xnubio.finals.ctf.codeblue.jp:80
+    service_url: http://www-xnubio.finals.ctf.codeblue.jp
+    internal_service_host: 10.146.0.17
+  docker_registry:
+    ip_addr: 34.85.115.142
+    registry_service: registry-y0cf0u1w.finals.ctf.codeblue.jp:5000
+    registry_auth_service: registry-y0cf0u1w.finals.ctf.codeblue.jp:5001
+  runner:
+    service: 10.146.0.16
+    notification_url: http://10.146.0.19:8081/images

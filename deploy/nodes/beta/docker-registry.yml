@@ -15,3 +15,4 @@ hosts:
   runner:
     service: 10.146.0.16
     notification_url: http://10.146.0.19:8081/images
+    master_host: 10.146.0.19:8080

@@ -112,15 +112,24 @@ service 'bullseye-web' do
 end
 
 # XXX: runner-masterから結果を定期的に取得するやつ
-template '/etc/systemd/system/bullseye-web-worker.service' do
-  source 'templates/systemd/bullseye-web-worker.service'
+template '/etc/systemd/system/bullseye-web-batch.service' do
+  source 'templates/systemd/bullseye-web-batch.service'
+  action :create
+  mode '0644'
+  owner 'root'
+  group 'root'
+  notifies :run, 'execute[systemctl daemon-reload]', :immediately
+end
+
+template '/etc/systemd/system/bullseye-web-batch.timer' do
+  source 'templates/systemd/bullseye-web-batch.timer'
   owner 'root'
   group 'root'
   mode  '0644'
   notifies :run, 'execute[systemctl daemon-reload]', :immediately
 end
 
-service 'bullseye-web-worker' do
+service 'bullseye-web-batch.timer' do
   action [:enable, :start]
 end
 

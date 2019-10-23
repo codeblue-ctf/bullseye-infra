@@ -1,14 +1,13 @@
 [Unit]
-Description=Bullseye Web Worker
+Description=Bullseye Web Batch Process
 After=network.target
 
 [Service]
-Type=simple
+Type=oneshot
 User=<%= node[:user] %>
 WorkingDirectory=<%= node[:app_path] %>
 Environment=RAILS_ENV=production
-ExecStart=/usr/local/bin/bundle exec rake XXX
-Restart=always
+ExecStart=/usr/local/bin/bundle exec rake sync_data:fetch_result
 
 [Install]
 <% if node[:is_vagrant] then %>

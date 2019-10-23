@@ -7,7 +7,7 @@ Type=oneshot
 User=<%= node[:user] %>
 WorkingDirectory=<%= node[:app_path] %>
 Environment=RAILS_ENV=production
-ExecStart=/usr/local/bin/bundle exec rake sync_data:fetch_result
+ExecStart=/home/ubuntu/.rbenv/shims/bundle exec rake sync_data:fetch_result
 
 [Install]
 <% if node[:is_vagrant] then %>

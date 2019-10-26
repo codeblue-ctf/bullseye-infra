@@ -2,6 +2,7 @@ roles:
   - web
 user: ubuntu
 app_path: /home/ubuntu/bullseye-web
+env: beta
 hosts:
   web:
     ip_addr: 34.84.70.203

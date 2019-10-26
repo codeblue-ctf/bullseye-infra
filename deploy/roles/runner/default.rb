@@ -1,4 +1,5 @@
 node.reverse_merge!(
+  env: 'production',
   docker: {
     users: [ node[:user] ]
   }

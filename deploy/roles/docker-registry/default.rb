@@ -1,4 +1,5 @@
 node.reverse_merge!(
+  env: 'production',
   docker: {
     users: [ node[:user] ]
   }
@@ -27,17 +28,19 @@ template env_file do
 end
 
 # Place certificates
+server_key = node[:env] == 'production' ? node[:secrets][:production_cert_key] : node[:secrets][:beta_cert_key]
+server_crt = node[:env] == 'production' ? node[:secrets][:production_cert_crt] : node[:secrets][:beta_cert_crt]
 file "#{node[:app_path]}/config/certs/server.key" do
   owner node[:user]
   group node[:user]
   mode '0600'
-  content node[:secrets][:docker_registry_server_key]
+  content server_key
 end
 file "#{node[:app_path]}/config/certs/server.crt" do
   owner node[:user]
   group node[:user]
   mode '0644'
-  content node[:secrets][:docker_registry_server_crt]
+  content server_crt
 end
 
 # Register docker registry (and docker registry auth) service and start

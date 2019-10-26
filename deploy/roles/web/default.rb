@@ -1,4 +1,5 @@
 node.reverse_merge!(
+  env: 'production',
   mysql_server: {
     username: 'web',
     database: 'bullseye_production',
@@ -140,17 +141,19 @@ service 'nginx' do
 end
 
 # Place certificates
+server_key = node[:env] == 'production' ? node[:secrets][:production_cert_key] : node[:secrets][:beta_cert_key]
+server_crt = node[:env] == 'production' ? node[:secrets][:production_cert_crt] : node[:secrets][:beta_cert_crt]
 file "/etc/nginx/server.key" do
   owner node[:user]
   group node[:user]
   mode '0600'
-  content node[:secrets][:docker_registry_server_key] # XXX: using same secret key with docker registry
+  content server_key
 end
 file "/etc/nginx/server.crt" do
   owner node[:user]
   group node[:user]
   mode '0644'
-  content node[:secrets][:docker_registry_server_crt] # XXX: using same secret key with docker registry
+  content server_crt
 end
 
 file "/etc/nginx/sites-enabled/default" do

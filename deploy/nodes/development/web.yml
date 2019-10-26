@@ -3,6 +3,7 @@ roles:
 is_vagrant: true
 user: vagrant
 app_path: /vagrant/
+env: beta
 mysql_server:
   username: web
   password: db_password

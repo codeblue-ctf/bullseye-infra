@@ -2,3 +2,4 @@ roles:
   - runner
 user: ubuntu
 app_path: /home/ubuntu/bullseye-runner
+env: beta

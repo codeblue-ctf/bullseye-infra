@@ -2,6 +2,7 @@ roles:
   - docker-registry
 user: vagrant
 app_path: /vagrant
+env: beta
 hosts:
   web:
     ip_addr: 10.123.0.10

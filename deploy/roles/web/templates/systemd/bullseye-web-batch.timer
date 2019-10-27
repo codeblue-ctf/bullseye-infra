@@ -2,7 +2,7 @@
 Description=Run bullseye web batch process every 10 minutes
 
 [Timer]
-OnCalendar=*:0/10
+OnCalendar=*:0/1
 Persistent=true
 
 [Install]

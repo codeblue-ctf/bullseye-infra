@@ -24,7 +24,7 @@ include_recipe "../../cookbooks/mysql_server"
 # Clone bullseye web
 unless node[:is_vagrant] then
   git node[:app_path] do
-    repository 'git@gitlab.com:CBCTF/bullseye-web.git'
+    repository 'https://github.com/codeblue-ctf/bullseye-web.git'
     user node[:user]
   end
 end

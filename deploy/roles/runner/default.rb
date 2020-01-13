@@ -14,7 +14,7 @@ include_recipe "../../cookbooks/nodejs"
 # Clone bullseye runner
 unless node[:is_vagrant] then
   git node[:app_path] do
-    repository 'git@gitlab.com:CBCTF/bullseye-runner.git'
+    repository 'https://github.com/codeblue-ctf/bullseye-runner.git'
     user node[:user]
   end
 end

@@ -13,7 +13,7 @@ include_recipe "../../cookbooks/docker-compose"
 # Clone bullseye docker registry
 unless node[:is_vagrant] then
   git node[:app_path] do
-    repository 'git@gitlab.com:CBCTF/bullseye-docker-registry.git'
+    repository 'https://github.com/codeblue-ctf/bullseye-docker-registry.git'
     user node[:user]
   end
 end

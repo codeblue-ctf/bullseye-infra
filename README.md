@@ -2,11 +2,9 @@
 
 ## Services
 
-- [Bulls Eye Web](https://gitlab.com/CBCTF/bulls-eye-web) (including admin CMS)
-- [Bulls Eye Runner](https://gitlab.com/CBCTF/bulls-eye-runner)
-- [Bulls Eye Docker Registry](https://gitlab.com/CBCTF/bulls-eye-docker-registry)
-
-Overview: <https://gitlab.com/CBCTF/bulls-eye/wikis/Overview>
+- [Bulls Eye Web](https://github.com/codeblue-ctf/bulls-eye-web) (including admin CMS)
+- [Bulls Eye Runner](https://github.com/codeblue-ctf/bulls-eye-runner)
+- [Bulls Eye Docker Registry](https://github.com/codeblue-ctf/bulls-eye-docker-registry)
 
 ## Deployment instructions
 

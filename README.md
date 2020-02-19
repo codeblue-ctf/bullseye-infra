@@ -2,9 +2,9 @@
 
 ## Services
 
-- [Bulls Eye Web](https://github.com/codeblue-ctf/bulls-eye-web) (including admin CMS)
-- [Bulls Eye Runner](https://github.com/codeblue-ctf/bulls-eye-runner)
-- [Bulls Eye Docker Registry](https://github.com/codeblue-ctf/bulls-eye-docker-registry)
+- [Bull's Eye Web](https://github.com/codeblue-ctf/bullseye-web) (including admin CMS)
+- [Bull's Eye Runner](https://github.com/codeblue-ctf/bullseye-runner)
+- [Bull's Eye Docker Registry](https://github.com/codeblue-ctf/bullseye-docker-registry)
 
 ## Deployment instructions
 
@@ -29,14 +29,14 @@ TODO: create Rakefile to do the same thing
 $ bundle exec itamae ssh -h PRODUCTION_HOST -y deploy/nodes/production/$ROLE.yml deploy/entry.rb
 ```
 
-### Bulls Eye Web
+### Bull's Eye Web
 
-See Bulls Eye Web instruction
+See Bull's Eye Web instruction
 
-### Bulls Eye Runner
+### Bull's Eye Runner
 
-See Bulls Eye Runner instruction
+See Bull's Eye Runner instruction
 
 ### Docker Registry & Docker Registry Auth
 
-See Bulls Eye Docker Registry instruction
+See Bull's Eye Docker Registry instruction
